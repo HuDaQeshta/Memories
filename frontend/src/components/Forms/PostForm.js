@@ -65,8 +65,7 @@ const PostForm = ({ history }) => {
         formData,
         config
       );
-      const pathOfImg = data.split("\\");
-      setSelectedFile(pathOfImg[0] + "/" + pathOfImg[1]);
+      setSelectedFile(data);
       setUploading(false);
     } catch (error) {
       console.log(error);

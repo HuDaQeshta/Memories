@@ -27,6 +27,7 @@ import {
   DISLIKE_POST_RESET,
   LIKE_POST_RESET,
   GET_POST_RESET,
+  UPDATE_POST_RESET,
 } from "../../../constants/postConstants";
 import {
   USER_LISTS_RESET,
@@ -37,8 +38,6 @@ const Post = ({ post, history }) => {
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  const postUpdate = useSelector((state) => state.postUpdate);
-  const { success: updateSuccess, post: updatedPost } = postUpdate;
   const [id, setId] = useState("");
 
   useEffect(() => {
@@ -47,7 +46,7 @@ const Post = ({ post, history }) => {
     } else {
       setId(post.userId);
     }
-  }, [updateSuccess, userInfo, dispatch, post, updatedPost]);
+  }, [userInfo, dispatch, post]);
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure? ")) {
       dispatch(deletePost(id));
@@ -78,11 +77,7 @@ const Post = ({ post, history }) => {
             dispatch(getPostLikesList(post._id));
             userInfo && dispatch(getUserLists(userInfo._id));
           }}
-          image={
-            updateSuccess && updatedPost && post && updatedPost._id === post._id
-              ? updatedPost.selectedFile
-              : post.selectedFile
-          }
+          image={post.selectedFile}
         />
       </Link>
       <div className={classes.overlay}>
@@ -98,16 +93,10 @@ const Post = ({ post, history }) => {
             dispatch({ type: USER_DETAILS_RESET });
             dispatch({ type: DISLIKE_POST_RESET });
             dispatch({ type: LIKE_POST_RESET });
+            dispatch({ type: UPDATE_POST_RESET });
           }}
         >
-          <Typography variant="h6">
-            {updateSuccess &&
-            updatedPost &&
-            post &&
-            updatedPost._id === post._id
-              ? updatedPost.creator
-              : post.creator}
-          </Typography>
+          <Typography variant="h6">{post.creator}</Typography>
         </Link>
         <Typography variant="body2">
           {moment(post.createdAt).fromNow()}
@@ -128,21 +117,15 @@ const Post = ({ post, history }) => {
       )}
       <div className={classes.details}>
         <Typography variant="body2" color="textSecondary">
-          {updateSuccess && updatedPost && post && updatedPost._id === post._id
-            ? updatedPost.tags && updatedPost.tags.map((tag) => `#${tag} `)
-            : post.tags && post.tags.map((tag) => `#${tag} `)}
+          {post.tags && post.tags.map((tag) => `#${tag} `)}
         </Typography>
       </div>
       <Typography className={classes.title} variant="h5" gutterBottom>
-        {updateSuccess && updatedPost && post && updatedPost._id === post._id
-          ? updatedPost.title
-          : post.title}
+        {post.title}
       </Typography>
       <CardContent>
         <Typography variant="h5" gutterBottom>
-          {updateSuccess && updatedPost && post && updatedPost._id === post._id
-            ? updatedPost.message
-            : post.message}
+          {post.message}
         </Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>

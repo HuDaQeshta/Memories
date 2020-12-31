@@ -26,6 +26,8 @@ const Posts = ({ keyword, user, columns }) => {
   const { success: likeSuccess, loading: likeLoading } = postLike;
   const postDislike = useSelector((state) => state.postDislike);
   const { success: dislikeSuccess, loading: dislikeLoading } = postDislike;
+  const postUpdate = useSelector((state) => state.postUpdate);
+  const { success: updateSuccess, loading: updateLoading } = postUpdate;
 
   useEffect(() => {
     if (user === null && keyword === "") {
@@ -44,14 +46,17 @@ const Posts = ({ keyword, user, columns }) => {
     keyword,
     deleteSuccess,
     likeSuccess,
+    updateSuccess,
     dislikeSuccess,
   ]);
 
   return (loading || userLoading) &&
     !likeSuccess &&
     !dislikeSuccess &&
+    !updateSuccess &&
     !likeLoading &&
-    !dislikeLoading ? (
+    !dislikeLoading &&
+    !updateLoading ? (
     <Box>
       <CircularProgress
         topcolor="secondary"

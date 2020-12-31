@@ -22,7 +22,7 @@ const PostForm = ({ history }) => {
     message: "",
     tags: "",
   });
-  const [selectedFile, setSelectedFile] = useState("");
+  const [postFile, setPostFile] = useState("");
   const [uploading, setUploading] = useState(false);
   const dispatch = useDispatch();
   const postCreate = useSelector((state) => state.postCreate);
@@ -43,7 +43,7 @@ const PostForm = ({ history }) => {
     }
     if (success) {
       setPostData({ title: "", message: "", tags: "" });
-      setSelectedFile("");
+      setPostFile("");
       dispatch({ type: CREATE_POST_RESET });
       dispatch({ type: GET_POST_RESET });
     }
@@ -65,7 +65,7 @@ const PostForm = ({ history }) => {
         formData,
         config
       );
-      setSelectedFile(data);
+      setPostFile(data);
       setUploading(false);
     } catch (error) {
       console.log(error);
@@ -76,9 +76,11 @@ const PostForm = ({ history }) => {
     e.preventDefault();
     if (userInfo) {
       if (!post._id) {
-        dispatch(createPost(postData));
+        dispatch(createPost({ ...postData, selectedFile: postFile }));
       } else {
-        dispatch(updatePost({ ...postData, _id: post._id, selectedFile }));
+        dispatch(
+          updatePost({ ...postData, _id: post._id, selectedFile: postFile })
+        );
         dispatch({ type: GET_POST_RESET });
       }
       clearForm();
@@ -88,7 +90,7 @@ const PostForm = ({ history }) => {
   };
   const clearForm = () => {
     setPostData({ title: "", message: "", tags: "" });
-    setSelectedFile("");
+    setPostFile("");
     dispatch({ type: GET_POST_RESET });
   };
 

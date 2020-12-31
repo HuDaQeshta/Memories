@@ -1,0 +1,94 @@
+import React, { useEffect } from "react";
+import Post from "./Post/Post";
+import { Grid, Box, CircularProgress } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { getPosts, getUserPosts } from "../../actions/postActions";
+import { Alert } from "@material-ui/lab";
+
+import useStyles from "../../styles";
+import { Route } from "react-router-dom";
+const Posts = ({ keyword, user, columns }) => {
+  const classes = useStyles();
+  const postList = useSelector((state) => state.postList);
+  const { loading, error, posts } = postList;
+  const postMyList = useSelector((state) => state.postMyList);
+  const {
+    loading: userLoading,
+    error: userError,
+    posts: userPosts,
+  } = postMyList;
+  const dispatch = useDispatch();
+  const postCreate = useSelector((state) => state.postCreate);
+  const { success: createSuccess } = postCreate;
+  const postDelete = useSelector((state) => state.postDelete);
+  const { success: deleteSuccess } = postDelete;
+  const postLike = useSelector((state) => state.postLike);
+  const { success: likeSuccess, loading: likeLoading } = postLike;
+  const postDislike = useSelector((state) => state.postDislike);
+  const { success: dislikeSuccess, loading: dislikeLoading } = postDislike;
+
+  useEffect(() => {
+    if (user === null && keyword === "") {
+      dispatch(getPosts());
+    }
+    if (user === null && keyword !== "") {
+      dispatch(getPosts(keyword));
+    }
+    if (user !== null) {
+      dispatch(getUserPosts(user));
+    }
+  }, [
+    dispatch,
+    createSuccess,
+    user,
+    keyword,
+    deleteSuccess,
+    likeSuccess,
+    dislikeSuccess,
+  ]);
+
+  return (loading || userLoading) &&
+    !likeSuccess &&
+    !dislikeSuccess &&
+    !likeLoading &&
+    !dislikeLoading ? (
+    <Box>
+      <CircularProgress
+        topcolor="secondary"
+        left={-20}
+        top={-20}
+        className={classes.circularProgress}
+      />
+    </Box>
+  ) : (
+    <Grid
+      className={classes.postsContainer}
+      container
+      alignItems="stretch"
+      spacing={3}
+    >
+      {error && <Alert severity="error">{error}</Alert>}
+      {userError && <Alert severity="error">{userError}</Alert>}
+
+      {user
+        ? userPosts &&
+          userPosts.map((post) => (
+            <Grid item xs={12} sm={columns} key={post._id}>
+              <Route
+                render={({ history }) => <Post post={post} history={history} />}
+              />
+            </Grid>
+          ))
+        : posts &&
+          posts.map((post) => (
+            <Grid item xs={12} sm={columns} key={post._id}>
+              <Route
+                render={({ history }) => <Post post={post} history={history} />}
+              />
+            </Grid>
+          ))}
+    </Grid>
+  );
+};
+
+export default Posts;

@@ -38,8 +38,8 @@ const PostForm = ({ history }) => {
         title: post.title,
         message: post.message,
         tags: post.tags,
-        selectedFile: post.selectedFile,
       });
+      setPostFile(post.selectedFile);
     }
     if (success) {
       setPostData({ title: "", message: "", tags: "" });
@@ -76,7 +76,14 @@ const PostForm = ({ history }) => {
     e.preventDefault();
     if (userInfo) {
       if (!post._id) {
-        dispatch(createPost({ ...postData, selectedFile: postFile }));
+        dispatch(
+          createPost({
+            title: postData.title,
+            message: postData.message,
+            tags: postData.tags,
+            selectedFile: postFile,
+          })
+        );
       } else {
         dispatch(
           updatePost({ ...postData, _id: post._id, selectedFile: postFile })

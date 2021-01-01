@@ -165,7 +165,7 @@ const PostForm = ({ history }) => {
             accept="image/*"
             id="icon-button-file"
             type="file"
-            label={selectedFile}
+            label={post.selectedFile}
             onChange={uploadingHandler}
           />
           {uploading && (

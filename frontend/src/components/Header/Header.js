@@ -289,7 +289,7 @@ const Header = ({ history }) => {
                 <SearchIcon />
               </div>
               <InputBase
-                placeholder="Search by Hashtags…"
+                placeholder="Search by Tags…"
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput,

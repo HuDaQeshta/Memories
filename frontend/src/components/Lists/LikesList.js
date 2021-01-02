@@ -58,7 +58,7 @@ const LikesList = ({ setMessage, authenticated }) => {
     followSuccess,
     unfollowSuccess,
   ]);
-  return !likesLoading && likes.length === 0 ? (
+  return !likesLoading && likes && likes.length === 0 ? (
     <Typography variant="h4" className={classes.marginTwoSides}>
       Looks like this post dones't have likes yet...
     </Typography>

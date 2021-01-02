@@ -6,7 +6,7 @@ import Post from "../models/Post.js";
 // // @desc     Get all posts
 // // @access   Public
 const getPosts = asyncHandler(async (req, res) => {
-  const pageSize = 10;
+  const pageSize = 30;
   const page = Number(req.query.pageNumber) || 1;
   const keyword = req.query.keyword
     ? {

@@ -45,7 +45,6 @@ export default makeStyles({
   },
   title: {
     padding: "0 16px",
-    fontFamily: '"Comic Sans MS", arial',
     color: "#36C9C6",
   },
   cardActions: {

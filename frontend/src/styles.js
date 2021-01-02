@@ -37,13 +37,11 @@ export default makeStyles((theme) => ({
   },
   title: {
     margin: "0.5rem 0",
-    fontFamily: '"Comic Sans MS", arial',
   },
   heading: {
     //color: "#477998",
     color: "#36C9C6",
     margin: "1rem 0",
-    fontFamily: '"Comic Sans MS", arial',
   },
   image: {
     marginLeft: "1rem",
@@ -94,7 +92,6 @@ export default makeStyles((theme) => ({
     color: "#fff",
     letterSpacing: "0.3",
 
-    fontFamily: '"Comic Sans MS", arial',
     width: "55%",
   },
   divider: {

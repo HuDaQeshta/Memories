@@ -116,11 +116,7 @@ const ProfileTop = ({ setMessage, history }) => {
         justify="center"
       >
         {user && user.avatar ? (
-          <Box
-            alignItems="center"
-            justifyContent="center"
-            style={{ height: "10rem", width: "10rem" }}
-          >
+          <Box alignItems="center" justifyContent="center">
             <img
               className={classes.avatar}
               alt={user.name && user.name + "Avatar"}
@@ -128,11 +124,7 @@ const ProfileTop = ({ setMessage, history }) => {
             />
           </Box>
         ) : (
-          <Box
-            alignItems="center"
-            justifyContent="center"
-            style={{ height: "10rem", width: "10rem" }}
-          >
+          <Box alignItems="center" justifyContent="center">
             <img
               className={classes.avatar}
               alt="Default Avatar"

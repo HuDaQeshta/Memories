@@ -32,6 +32,7 @@ import {
   DISLIKE_POST_RESET,
   LIKE_POST_RESET,
 } from "../../constants/postConstants";
+import defaultAvatar from "../../images/defaultAvatar.png";
 
 const Header = ({ history }) => {
   const classes = useStyles();
@@ -251,9 +252,7 @@ const Header = ({ history }) => {
               {userInfo.avatar ? (
                 <Avatar src={userInfo.avatar && userInfo.avatar} />
               ) : (
-                <Avatar>
-                  {userInfo.name && userInfo.name[0].toUpperCase()}
-                </Avatar>
+                <Avatar src={defaultAvatar} />
               )}
             </IconButton>
             <p>{userInfo && userInfo.name}</p>
@@ -332,9 +331,7 @@ const Header = ({ history }) => {
                   {userInfo.avatar ? (
                     <Avatar src={userInfo.avatar && userInfo.avatar} />
                   ) : (
-                    <Avatar>
-                      {userInfo.name && userInfo.name[0].toUpperCase()}
-                    </Avatar>
+                    <Avatar src={defaultAvatar} />
                   )}
                   {/* <AccountCircle /> */}
                 </IconButton>

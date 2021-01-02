@@ -10,13 +10,9 @@ import { Route } from "react-router-dom";
 const Posts = ({ keyword, user, columns }) => {
   const classes = useStyles();
   const postList = useSelector((state) => state.postList);
-  const { loading, error, posts } = postList;
+  const { loading, posts } = postList;
   const postMyList = useSelector((state) => state.postMyList);
-  const {
-    loading: userLoading,
-    error: userError,
-    posts: userPosts,
-  } = postMyList;
+  const { loading: userLoading, posts: userPosts } = postMyList;
   const dispatch = useDispatch();
   const postCreate = useSelector((state) => state.postCreate);
   const { success: createSuccess } = postCreate;
@@ -72,11 +68,11 @@ const Posts = ({ keyword, user, columns }) => {
       alignItems="stretch"
       spacing={3}
     >
-      {error && <Alert severity="error">{error}</Alert>}
-      {userError && <Alert severity="error">{userError}</Alert>}
-
-      {user
-        ? userPosts &&
+      {user ? (
+        !userPosts ? (
+          <Alert severity="info">This user has no posts yet!</Alert>
+        ) : (
+          userPosts &&
           userPosts.map((post) => (
             <Grid item xs={12} sm={columns} key={post._id}>
               <Route
@@ -84,14 +80,21 @@ const Posts = ({ keyword, user, columns }) => {
               />
             </Grid>
           ))
-        : posts &&
-          posts.map((post) => (
-            <Grid item xs={12} sm={columns} key={post._id}>
-              <Route
-                render={({ history }) => <Post post={post} history={history} />}
-              />
-            </Grid>
-          ))}
+        )
+      ) : !posts || (posts && posts.length === 0 && keyword !== "") ? (
+        <Alert severity="info">
+          Sorry, There are No Posts to show right now!
+        </Alert>
+      ) : (
+        posts &&
+        posts.map((post) => (
+          <Grid item xs={12} sm={columns} key={post._id}>
+            <Route
+              render={({ history }) => <Post post={post} history={history} />}
+            />
+          </Grid>
+        ))
+      )}
     </Grid>
   );
 };

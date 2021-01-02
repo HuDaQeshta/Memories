@@ -1,6 +1,14 @@
 import React, { useEffect } from "react";
-import { Container, Grow, Grid, AppBar, Typography } from "@material-ui/core";
-import { Route } from "react-router-dom";
+import {
+  Container,
+  Grow,
+  Grid,
+  AppBar,
+  Typography,
+  Button,
+  Box,
+} from "@material-ui/core";
+import { Link, Route } from "react-router-dom";
 import memories from "../images/memories.png";
 import Posts from "../components/Posts/Posts";
 import Header from "../components/Header/Header";
@@ -37,6 +45,13 @@ const HomeScreen = ({ match }) => {
             spacing={3}
           >
             <Grid item xs={12} sm={8}>
+              {keyword && (
+                <Box style={{ marginBottom: "2rem" }}>
+                  <Button variant="contained" className={classes.goBackBtn}>
+                    <Link to="/">Go Back</Link>
+                  </Button>
+                </Box>
+              )}
               <Posts keyword={keyword} user={null} columns={6} />
             </Grid>
             <Grid item xs={12} sm={4}>

@@ -16,6 +16,32 @@ const storage = multer.diskStorage({
   },
 });
 
+// if (process.env.NODE_ENV === "production") {
+//   var storage = multer.diskStorage({
+//     destination(req, file, cb) {
+//       cb(null, path.resolve(__dirname, "/frontend/build"));
+//     },
+//     filename(req, file, cb) {
+//       cb(
+//         null,
+//         `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
+//       );
+//     },
+//   });
+// } else {
+//   var storage = multer.diskStorage({
+//     destination(req, file, cb) {
+//       cb(null, path.resolve(__dirname, "/uploads"));
+//     },
+//     filename(req, file, cb) {
+//       cb(
+//         null,
+//         `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
+//       );
+//     },
+//   });
+// }
+
 function checkFileType(file, cb) {
   const fileTypes = /jpg|jpeg|png/;
   const extName = fileTypes.test(

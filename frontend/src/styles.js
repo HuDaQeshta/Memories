@@ -37,13 +37,13 @@ export default makeStyles((theme) => ({
   },
   title: {
     margin: "0.5rem 0",
-    fontFamily: '"Caveat", cursive',
+    fontFamily: '"Comic Sans MS", arial',
   },
   heading: {
     //color: "#477998",
     color: "#36C9C6",
     margin: "1rem 0",
-    fontFamily: '"Caveat", cursive',
+    fontFamily: '"Comic Sans MS", arial',
   },
   image: {
     marginLeft: "1rem",
@@ -58,6 +58,10 @@ export default makeStyles((theme) => ({
   },
   links: {
     textDecoration: "none",
+    color: "#303F9F",
+    "&:hover": {
+      color: "#F50057",
+    },
   },
   buttonSubmit: {
     marginBottom: 10,
@@ -86,11 +90,12 @@ export default makeStyles((theme) => ({
   },
 
   bio: {
-    paddingBottom: "1.5rem",
+    marginBottom: "1.5rem !important",
     color: "#fff",
     letterSpacing: "0.3",
-    fontFamily: '"Caveat", cursive',
-    width: "20rem",
+
+    fontFamily: '"Comic Sans MS", arial',
+    width: "55%",
   },
   divider: {
     height: "3rem",
@@ -130,17 +135,18 @@ export default makeStyles((theme) => ({
   },
   avatarContainer: {
     position: "relative",
-    margin: "1rem 0",
+    margin: "1.5rem 0",
+    textAlign: "center",
     "&:hover div": {
       opacity: "1",
     },
   },
   avatar: {
-    width: theme.spacing(10),
-    height: theme.spacing(10),
-    margin: "auto",
-    fontSize: "5rem",
+    width: "10rem",
+    height: "10rem",
+    margin: "0 auto",
     border: "2px solid #fff",
+    borderRadius: "50%",
   },
   btnOverlay: {
     position: "absolute",

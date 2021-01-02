@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Box,
   CircularProgress,
   Grid,
@@ -24,7 +23,7 @@ import {
 } from "../actions/userActions";
 import useStyles from "../styles";
 import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
-
+import defaultAvatar from "../images/defaultAvatar.png";
 const ProfileEditScreen = ({ history }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -161,11 +160,21 @@ const ProfileEditScreen = ({ history }) => {
             >
               <Box className={classes.avatarContainer}>
                 {avatar ? (
-                  <Avatar className={classes.avatar} src={avatar} />
+                  <Box>
+                    <img
+                      className={classes.avatar}
+                      alt={formData.name && formData.name + "Avatar"}
+                      src={avatar}
+                    />
+                  </Box>
                 ) : (
-                  <Avatar className={classes.avatar}>
-                    {formData.name && formData.name[0].toUpperCase()}
-                  </Avatar>
+                  <Box alignItems="center" justifyContent="center">
+                    <img
+                      className={classes.avatar}
+                      alt="Default Avatar"
+                      src={defaultAvatar}
+                    />
+                  </Box>
                 )}
                 <input
                   accept="image/*"
@@ -182,6 +191,7 @@ const ProfileEditScreen = ({ history }) => {
                   </label>
                 </Box>
               </Box>
+
               <TextField
                 name="bio"
                 align="center"
@@ -271,27 +281,23 @@ const ProfileEditScreen = ({ history }) => {
                   </ListItem>
                   <Divider orientation="horizontal" />
                   <ListItem>
-                    <div style={{ padding: "0  1rem 0 0" }}>
-                      <TextField
-                        name="password"
-                        variant="outlined"
-                        className={classes.marginBig}
-                        label="Password"
-                        fullWidth
-                        required
-                        type="password"
-                        value={formData.password}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            [e.target.name]: e.target.value,
-                          })
-                        }
-                      />
-                      <small className={classes.textMuted}>
-                        * Your password must be more than 8 characters
-                      </small>
-                    </div>
+                    <TextField
+                      name="password"
+                      variant="outlined"
+                      className={classes.marginBig}
+                      label="Password"
+                      fullWidth
+                      required
+                      helperText="Your password must be more than 8 characters"
+                      type="password"
+                      value={formData.password}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          [e.target.name]: e.target.value,
+                        })
+                      }
+                    />
                   </ListItem>
                   <Divider orientation="horizontal" />
                   <ListItem>

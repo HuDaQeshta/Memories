@@ -16,6 +16,8 @@ import {
   USER_DETAILS_RESET,
   USER_LISTS_RESET,
 } from "../../constants/userConstants";
+import defaultAvatar from "../../images/defaultAvatar.png";
+
 const FollowerItem = ({ history, account, setMessage, authenticated }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -51,9 +53,7 @@ const FollowerItem = ({ history, account, setMessage, authenticated }) => {
           {account.follower.avatar ? (
             <Avatar src={account.follower.avatar} />
           ) : (
-            <Avatar>
-              {account.follower.name && account.follower.name[0].toUpperCase()}
-            </Avatar>
+            <Avatar src={defaultAvatar} />
           )}
         </ListItemAvatar>
         <Link

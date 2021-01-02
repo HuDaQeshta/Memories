@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import {
   Box,
   Grid,
-  Avatar,
   Button,
   Typography,
   CircularProgress,
@@ -23,6 +22,7 @@ import {
   DISLIKE_POST_RESET,
   LIKE_POST_RESET,
 } from "../../constants/postConstants";
+import defaultAvatar from "../../images/defaultAvatar.png";
 const ProfileTop = ({ setMessage, history }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -115,11 +115,21 @@ const ProfileTop = ({ setMessage, history }) => {
         justify="center"
       >
         {user && user.avatar ? (
-          <Avatar className={classes.avatar} src={user.avatar && user.avatar} />
+          <Box>
+            <img
+              className={classes.avatar}
+              alt={user.name && user.name + "Avatar"}
+              src={user.avatar && user.avatar}
+            />
+          </Box>
         ) : (
-          <Avatar className={classes.avatar}>
-            {user.name && user.name[0].toUpperCase()}
-          </Avatar>
+          <Box alignItems="center" justifyContent="center">
+            <img
+              className={classes.avatar}
+              alt="Default Avatar"
+              src={defaultAvatar}
+            />
+          </Box>
         )}
         <Typography
           align="center"

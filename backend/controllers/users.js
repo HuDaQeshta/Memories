@@ -16,7 +16,7 @@ const authUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
-      avatar: user.avatar,
+      avatar: user.avatar || "",
       notifications: user.notifications,
       token: generateToken(user._id),
     });
@@ -89,7 +89,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
     user.bio = req.body.bio || user.bio;
-    user.avatar = req.body.avatar || user.avatar;
+    user.avatar = req.body.avatar || user.avatar || "";
     user.notifications = req.body.notifications || user.notifications;
     if (req.body.password) {
       user.password = req.body.password;

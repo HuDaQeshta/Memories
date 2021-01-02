@@ -9,7 +9,7 @@ export default makeStyles((theme) => ({
   },
   menuLink: {
     textDecoration: "none",
-    fontFamily: '"Caveat", cursive',
+    fontFamily: '"Comic Sans MS", arial',
     color: "#000",
   },
   marginTopSm: {

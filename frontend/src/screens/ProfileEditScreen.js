@@ -160,7 +160,11 @@ const ProfileEditScreen = ({ history }) => {
             >
               <Box className={classes.avatarContainer}>
                 {avatar ? (
-                  <Box>
+                  <Box
+                    alignItems="center"
+                    justifyContent="center"
+                    style={{ height: "10rem", width: "10rem" }}
+                  >
                     <img
                       className={classes.avatar}
                       alt={formData.name && formData.name + "Avatar"}
@@ -168,7 +172,11 @@ const ProfileEditScreen = ({ history }) => {
                     />
                   </Box>
                 ) : (
-                  <Box alignItems="center" justifyContent="center">
+                  <Box
+                    alignItems="center"
+                    justifyContent="center"
+                    style={{ height: "10rem", width: "10rem" }}
+                  >
                     <img
                       className={classes.avatar}
                       alt="Default Avatar"

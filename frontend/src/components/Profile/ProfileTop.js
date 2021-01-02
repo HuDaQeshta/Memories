@@ -89,6 +89,7 @@ const ProfileTop = ({ setMessage, history }) => {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          margin: "1rem 0 2rem 0",
         }}
       >
         <Button
@@ -115,7 +116,11 @@ const ProfileTop = ({ setMessage, history }) => {
         justify="center"
       >
         {user && user.avatar ? (
-          <Box>
+          <Box
+            alignItems="center"
+            justifyContent="center"
+            style={{ height: "10rem", width: "10rem" }}
+          >
             <img
               className={classes.avatar}
               alt={user.name && user.name + "Avatar"}
@@ -123,7 +128,11 @@ const ProfileTop = ({ setMessage, history }) => {
             />
           </Box>
         ) : (
-          <Box alignItems="center" justifyContent="center">
+          <Box
+            alignItems="center"
+            justifyContent="center"
+            style={{ height: "10rem", width: "10rem" }}
+          >
             <img
               className={classes.avatar}
               alt="Default Avatar"

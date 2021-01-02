@@ -139,8 +139,8 @@ export default makeStyles((theme) => ({
     },
   },
   avatar: {
-    width: "10rem",
-    height: "10rem",
+    width: "100%",
+    height: "100%",
     margin: "0 auto",
     border: "2px solid #fff",
     borderRadius: "50%",

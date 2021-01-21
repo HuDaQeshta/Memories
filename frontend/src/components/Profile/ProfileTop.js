@@ -21,6 +21,7 @@ import {
 import {
   DISLIKE_POST_RESET,
   LIKE_POST_RESET,
+  GET_POST_RESET,
 } from "../../constants/postConstants";
 import defaultAvatar from "../../images/defaultAvatar.png";
 const ProfileTop = ({ setMessage, history }) => {
@@ -97,6 +98,7 @@ const ProfileTop = ({ setMessage, history }) => {
           onClick={() => {
             dispatch({ type: DISLIKE_POST_RESET });
             dispatch({ type: LIKE_POST_RESET });
+            dispatch({ type: GET_POST_RESET });
           }}
           className={classes.editProfileBtns}
         >
